@@ -1,0 +1,17 @@
+from building import *
+Import('rtconfig')
+
+src   = []
+cwd   = GetCurrentDir()
+
+# add lora-modem-driver src files.
+src += Glob('lora_modem.c')
+
+# add lora-modem include path.
+include_path = [cwd]
+include_path += [cwd+'/at_cmd']
+
+# add src and include to group.PKG_USING_LORA_MODEM_DRIVER
+group = DefineGroup('lora-modem-driver', src, depend = [''], CPPPATH = include_path)
+
+Return('group')

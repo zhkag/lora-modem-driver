@@ -1,0 +1,19 @@
+from building import * 
+import rtconfig
+
+# get current dir path
+cwd = GetCurrentDir()
+
+# init src and inc vars
+src = []
+inc = []
+
+# add testcase common include
+inc = inc + [cwd]
+
+# add testcase basic code
+src = Glob('*.c')
+
+group = DefineGroup('lora-modem-driver/class_a', src, depend = ['LORA_MODEM_DRIVER_USING_SAMPLE_LORAWAN_CLASS_A'], CPPPATH = inc)
+
+Return('group')
